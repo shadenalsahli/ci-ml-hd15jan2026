@@ -26,7 +26,7 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 # Train model
-model = LogisticRegression(max_iter=100, C=1)
+model = LogisticRegression(max_iter=100, C=10)
 model.fit(X_train_scaled, y_train)
 
 # Predict and evaluate
