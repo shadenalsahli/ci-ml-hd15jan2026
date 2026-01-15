@@ -1,0 +1,42 @@
+name: CI-ML-Training
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    # Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Run training
+    - name: Run training
+      run: |
+        python src/train.py
+
+    # Upload artifacts
+    - name: Upload training artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: training-artifacts
+        path: |
+          artifacts/model.pkl
+          artifacts/scaler.pkl
+          artifacts/metrics.json
+          artifacts/confusion_matrix.png

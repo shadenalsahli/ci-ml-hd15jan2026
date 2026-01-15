@@ -1,0 +1,9 @@
+# Ignore Python artifacts
+*.pyc
+__pycache__/
+
+# Ignore data/artifacts
+artifacts/
+*.pkl
+*.png
+*.json
